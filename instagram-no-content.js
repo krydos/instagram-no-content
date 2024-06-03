@@ -20,7 +20,11 @@ function deleteElements(selectors) {
 
 (function() {
     'use strict';
-    deleteElements(['video', 'img']);
 
-    document.arrive('video,img', () => deleteElements(['video', 'img']));
+    document.arrive('video,img', () => {
+        // don't delete anything if we're in direct section
+        if (! /direct/.test(location.href)) {
+            deleteElements(['video', 'img'])
+        }
+    });
 })();
